@@ -8,6 +8,12 @@ const routes = [
     path: '/',
     name: 'Home',
     component: () => import('../views/Home.vue')
+  },
+  {
+    path: '/search/:tag',
+    name: 'searchResults',
+    component: () => import('../views/SearchResults.vue'),
+    props: true
   }
 ]
 
