@@ -6,6 +6,8 @@
         File
         <input type="file" id="file" ref="file" @change="handleFileUpload" />
       </label>
+      <br/>
+      <progress max="100" :value.prop="uploadPercentage"></progress>
       <button type="submit" @click.prevent="submitFile">Submit</button>
     </div>
     <br/>
@@ -17,7 +19,8 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      file: ''
+      file: '',
+      uploadPercentage: 0
     }
   },
   methods: {
@@ -32,7 +35,10 @@ export default {
         {
           headers: {
             'Content-Type': 'multipart/form-data'
-          }
+          },
+          onUploadProgress: function (progressEvent) {
+            this.uploadPercentage = parseInt(Math.round((progressEvent.loaded / progressEvent.total) * 100))
+          }.bind(this)
         }
       ).then(() => console.log('Success!'))
         .catch(() => console.log('Failure'))
