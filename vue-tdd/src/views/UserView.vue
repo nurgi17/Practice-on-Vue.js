@@ -16,13 +16,13 @@ export default {
     VUserProfile
   },
   computed: {
-    ...mapState ({
+    ...mapState({
       user: 'user'
     })
   },
   methods: {
     seacrhUser (username) {
-      this.$store.dispatch('SEARCH_USER', { username })   
+      this.$store.dispatch('SEARCH_USER', { username })
     }
   }
 }
