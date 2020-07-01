@@ -1,11 +1,12 @@
 <template>
   <div>
-    <VUserSearchForm />
+    <VUserSearchForm @submitted="seacrhUser"/>
     <VUserProfile :user="user"/>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import VUserSearchForm from '@/components/VUserSearchForm.vue'
 import VUserProfile from '@/components/VUserProfile.vue'
 export default {
@@ -14,11 +15,14 @@ export default {
     VUserSearchForm,
     VUserProfile
   },
-  data () {
-    return {
-      user: {
-        name: ''
-      }
+  computed: {
+    ...mapState ({
+      user: 'user'
+    })
+  },
+  methods: {
+    seacrhUser (username) {
+      this.$store.dispatch('SEARCH_USER', { username })   
     }
   }
 }
