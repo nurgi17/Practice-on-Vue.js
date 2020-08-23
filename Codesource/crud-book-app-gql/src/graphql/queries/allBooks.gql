@@ -1,0 +1,11 @@
+query allBooks{
+  books{
+    id
+    title
+    description
+    author{
+      id
+      name
+    }
+  }
+}

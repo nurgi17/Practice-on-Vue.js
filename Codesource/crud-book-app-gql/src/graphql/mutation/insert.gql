@@ -1,0 +1,13 @@
+const ADD_BOOKS = gql `
+  mutation ($book_string: String!) {
+  insert_books(objects: {title: $book_string}) {
+    affected_rows
+    returning {
+      id
+      title
+      description
+      is_completed
+    }
+  }
+}
+`;
