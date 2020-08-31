@@ -1,0 +1,35 @@
+{
+  "name": "graphql-blog",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "jola_adebayo <adebayoanjola@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "migrate": " sequelize db:migrate",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/server --exec babel-node -e js",
+    "build": "yarn run clean && babel src -d build",
+    "clean": "rimraf build",
+    "start": "node build/server"
+  },
+  "dependencies": {
+    "apollo-server": "^2.11.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "graphql": "^14.6.0",
+    "graphql-tools": "^4.0.7",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.1.0",
+    "nodemon": "^2.0.2",
+    "rimraf": "^3.0.2",
+    "sequelize": "^5.21.5",
+    "sequelize-cli": "^5.5.1",
+    "sqlite3": "^4.1.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1"
+  }
+}
