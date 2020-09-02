@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import { setContext } from 'apollo-link-context'
 import VueApollo from 'vue-apollo'
 import { createApolloClient, restartWebsockets } from 'vue-cli-plugin-apollo/graphql-client'
 
@@ -9,9 +10,20 @@ Vue.use(VueApollo)
 const AUTH_TOKEN = 'apollo-token'
 
 // Http endpoint
-const httpEndpoint = process.env.VUE_APP_GRAPHQL_HTTP || 'http://localhost:4000/graphql'
+const httpEndpoint = process.env.VUE_APP_GRAPHQL_HTTP || 'http://localhost:4000/'
 
 // Config
+const authLink = setContext(async (_, { headers }) => {
+  // Use your async token function here:
+  const token = JSON.parse(localStorage.getItem('apollo-token'))
+  // Return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token || ''
+    }
+  }
+})
 const defaultOptions = {
   // You can use `https` for secure connection (recommended in production)
   httpEndpoint,
@@ -32,6 +44,7 @@ const defaultOptions = {
   // note: don't override httpLink here, specify httpLink options in the
   // httpLinkOptions property of defaultOptions.
   // link: myLink
+  link: authLink
 
   // Override default cache
   // cache: myCache
@@ -45,6 +58,13 @@ const defaultOptions = {
   // Client local data (see apollo-link-state)
   // clientState: { resolvers: { ... }, defaults: { ... } }
 }
+
+// Create apollo client
+export const { apolloClient, wsClient } = createApolloClient({
+  ...defaultOptions
+  // ...options
+})
+apolloClient.wsClient = wsClient
 
 // Call this in the Vue app file
 export function createProvider (options = {}) {

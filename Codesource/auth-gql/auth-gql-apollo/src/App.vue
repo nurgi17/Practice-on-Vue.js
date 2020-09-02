@@ -1,18 +1,19 @@
 <template>
   <div id="app">
     <header class="header">
-      <div class="app-name">VueGraph Authenticator</div>
-      <div v-if="authStatus" id="nav">
-        <div>Hi {{ user.name }}</div>
-        <button class="auth-button" @click="logout">Log Out</button>
-      </div>
+      <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1">Auth example with gql</span>
+        <div v-if="authStatus" class="form-inline" id="nav">
+          <div>Hi {{ user.name }}</div>
+          <button class="" @click="logout">Log Out</button>
+        </div>
+      </nav>
     </header>
     <router-view/>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 export default {
   name: 'App',
   components: {
@@ -29,7 +30,12 @@ export default {
     }
   },
   computed: {
-    ...mapGetters['authStatus', 'user']
+    authStatus () {
+      return this.$store.getters.authStatus
+    },
+    user () {
+      return this.$store.getters.user
+    }
   }
 }
 </script>
@@ -37,7 +43,7 @@ export default {
 <style>
 
 #app {
-  font-family: 'Baloo Chettan 2', cursive;
+  font-family: 'Helvetica';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
