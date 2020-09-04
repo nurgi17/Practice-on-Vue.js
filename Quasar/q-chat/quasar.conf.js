@@ -19,7 +19,7 @@ module.exports = function (/* ctx */) {
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/boot-files
     boot: [
-
+      'firebase'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -44,7 +44,16 @@ module.exports = function (/* ctx */) {
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
-
+      env: {
+        VUE_APP_apiKey:'AIzaSyDFLQemo1-QxWQWZHefL7nknFmrYkQ-b0w',
+        VUE_APP_authDomain:'q-chat-97688.firebaseapp.com',
+        VUE_APP_databaseURL:'https://q-chat-97688.firebaseio.com',
+        VUE_APP_projectId:'q-chat-97688',
+        VUE_APP_storageBucket:'q-chat-97688.appspot.com',
+        VUE_APP_messagingSenderId:'277006443374',
+        VUE_APP_appId:'1:277006443374:web:42d99aa55a1158168a177f',
+        VUE_APP_measurementId:'G-SV9NYM9J00'
+      },
       // transpile: false,
 
       // Add dependencies for transpiling with Babel (Array of string/regex)
