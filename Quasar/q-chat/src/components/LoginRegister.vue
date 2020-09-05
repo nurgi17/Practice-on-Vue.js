@@ -48,7 +48,6 @@ export default {
         this.loginUser(this.formData)
       } else {
         this.registerUser(this.formData)
-          .then(this.$router.push('/'))
       }
     }
   }
