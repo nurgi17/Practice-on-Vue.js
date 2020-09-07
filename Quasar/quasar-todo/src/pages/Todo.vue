@@ -83,7 +83,7 @@ export default {
         cancel: true,
         persistent: true
       }).onOk(() => {
-        this.tasks.spilice(index, 1)
+        this.tasks.splice(index, 1)
         this.$q.notify('Task deleted')
       })
     },
