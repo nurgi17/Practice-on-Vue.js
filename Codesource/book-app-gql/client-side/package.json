@@ -16,7 +16,7 @@
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.3",
     "vue": "^2.6.11",
-    "vue-apollo": "^3.0.3"
+    "vue-apollo": "^3.0.7"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.2.0",
