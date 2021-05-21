@@ -21,34 +21,34 @@ describe('VUserSearchForm', () => {
   }
 
   it('renders the component', () => {
-    //arrange
+    // arrange
     const { wrapper } = build()
 
-    //assert
+    // assert
     expect(wrapper.html()).toMatchSnapshot()
   })
 
   it('renders main child components', () => {
-    //arrange
+    // arrange
     const { input, button } = build()
 
-    //assert
+    // assert
     expect(input().exists()).toBe(true)
     expect(button().exists()).toBe(true)
   })
 
   it('calls "submitted" event when submitting form', () => {
-    //arrange
+    // arrange
     const expectedUser = 'nurgi17'
     const { wrapperMounted, button, inputMounted } = build()
     inputMounted().element.value = expectedUser
 
-    //act
+    // act
     inputMounted().trigger('input')
     button().trigger('click')
     button().trigger('submit')
 
-    //assert
+    // assert
     expect(wrapperMounted.emitted().submitted[0]).toEqual([expectedUser])
   })
 })

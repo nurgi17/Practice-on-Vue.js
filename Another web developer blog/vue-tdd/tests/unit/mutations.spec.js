@@ -10,13 +10,13 @@ describe('mutations', () => {
   })
 
   it('sets new user', () => {
-    //arrange
+    // arrange
     const expectedUser = user
 
-    //act
+    // act
     mutations.SET_USER(state, expectedUser)
 
-    //assert
+    // assert
     expect(state.user).toEqual(expectedUser)
     expect(state.user).not.toBe(expectedUser)
   })

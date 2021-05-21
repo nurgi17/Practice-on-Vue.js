@@ -24,15 +24,15 @@ describe('VUserProfile', () => {
   })
 
   it('renders the component', () => {
-    //arrange
+    // arrange
     const { wrapper } = build()
-    //assert
+    // assert
     expect(wrapper.html()).toMatchSnapshot()
   })
   it('renders main components', () => {
-    //arrange
+    // arrange
     const { avatar, name, bio } = build()
-    //assert
+    // assert
     expect(avatar().exists()).toBe(true)
 
     expect(avatar().attributes().src).toBe(props.user.avatar_url)

@@ -5,18 +5,18 @@ import userFixture from './fixtures/user'
 
 describe('api', () => {
   it('searches for the user', async () => {
-    //arrange
+    // arrange
     const expectedUser = 'nurgi17'
 
     const request = nock('https://api.github.com')
       .get(`/users/${expectedUser}`)
       .reply(200, userFixture)
-    
-    //act
+
+    // act
     const result = await api.searchUser(expectedUser)
     await flushPromises()
-    
-    //assert
+
+    // assert
     expect(result).toEqual(userFixture)
     expect(request.isDone()).toBe(true)
   })

@@ -1,8 +1,8 @@
-jest.mock('@/api')
 import flushPromises from 'flush-promises'
 import actions from '@/store/actions'
 import api from '@/api'
 import userFixture from './fixtures/user'
+jest.mock('@/api')
 
 describe('store actions', () => {
   let commit
@@ -12,14 +12,14 @@ describe('store actions', () => {
   })
 
   it('searches for user', async () => {
-    //arrange
+    // arrange
     const expectedUser = 'nurgi17'
 
-    //act
+    // act
     await actions.SEARCH_USER({ commit }, { username: expectedUser })
     await flushPromises()
 
-    //assert
+    // assert
     expect(api.searchUser).toHaveBeenCalledWith(expectedUser)
     expect(commit).toHaveBeenCalledWith('SET_USER', userFixture)
   })

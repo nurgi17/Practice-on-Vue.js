@@ -1,4 +1,3 @@
-jest.mock('@/store/actions')
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import UserView from '@/views/UserView'
@@ -7,6 +6,7 @@ import VUserProfile from '@/components/VUserProfile.vue'
 import initialState from '@/store/state'
 import actions from '@/store/actions'
 import userFixture from './fixtures/user'
+jest.mock('@/store/actions')
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
@@ -16,10 +16,10 @@ describe('UserView', () => {
   const build = () => {
     const wrapper = shallowMount(UserView, {
       localVue,
-      store: new Vuex.Store({ 
+      store: new Vuex.Store({
         state,
         actions
-       })
+      })
     })
 
     return {
@@ -35,38 +35,38 @@ describe('UserView', () => {
   })
 
   it('renders the component', () => {
-    //arrange
+    // arrange
     const { wrapper } = build()
-    //assert
+    // assert
     expect(wrapper.html()).toMatchSnapshot()
   })
 
   it('renders main child components', () => {
-    //arrange
+    // arrange
     const { userSearchForm, userProfile } = build()
-    //assert
+    // assert
     expect(userSearchForm().exists()).toBe(true)
     expect(userProfile().exists()).toBe(true)
   })
 
   it('passes a binded user prop to user profile component', () => {
-    //arrange
+    // arrange
     state.user = userFixture
     const { userProfile } = build()
 
-    //assert
+    // assert
     expect(userProfile().vm.user).toBe(state.user)
   })
 
   it('searches for a user when received "submitted"', () => {
-    //arrange
+    // arrange
     const expectedUser = 'nurgi17'
     const { userSearchForm } = build()
 
-    //act
+    // act
     userSearchForm().vm.$emit('submitted', expectedUser)
 
-    //assert
+    // assert
     expect(actions.SEARCH_USER).toHaveBeenCalled()
     expect(actions.SEARCH_USER.mock.calls[0][1]).toEqual({
       username: expectedUser
